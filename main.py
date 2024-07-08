@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from backend.ingestion import ingest_docs
 load_dotenv()
 
-st.header("InfoBrief: A Smart QA Bot")
+st.header("InfoDigest: A Smart Data Retrieval Bot")
 st.sidebar.title("Article URLs")
 
 url = st.sidebar.text_input("URL")

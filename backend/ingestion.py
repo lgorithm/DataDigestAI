@@ -4,7 +4,6 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone
-from backend.consts import INDEX_NAME
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -28,7 +27,7 @@ def ingest_docs(urls) -> None:
  
     # create embeddings and save it to Pinecone index
     embeddings = OpenAIEmbeddings()
-    PineconeVectorStore.from_documents(docs, embeddings, index_name=INDEX_NAME)
+    PineconeVectorStore.from_documents(docs, embeddings, index_name=os.environ["INDEX_NAME"])
   
     print("****** Added to Pinecone vectorstore vectors")
 

@@ -17,6 +17,8 @@ langchain-openai = "^0.1.13"
 langchain-text-splitters = "^0.2.2"
 unstructured = "^0.14.9"
 psutil = "^6.0.0"
+exceptiongroup = "^1.2.1"
+async-timeout = "^4.0.3"
 
 
 [build-system]

@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: digest-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: digest-pod
+  template:
+    metadata:
+      labels:
+        app: digest-pod
+    spec:
+      containers:
+      - name: digest-container
+        image: gcr.io/PROJECT_ID/IMAGE:TAG
+        ports:
+        - containerPort: 8501
+        env:
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: openai-secret
+              key: OPENAI_KEY
+        - name: PINECONE_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: pinecone-secret
+              key: PINECONE_KEY
+        - name: LANGCHAIN_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: langchain-secret
+              key: LANGCHAIN_KEY
+        - name: LANGCHAIN_PROJECT
+          valueFrom:
+            secretKeyRef:
+              name: langchain-project
+              key: PROJECT_NAME
+        - name: LANGCHAIN_TRACING_V2
+          valueFrom:
+            secretKeyRef:
+              name: langchain-tracing-v2
+              key: TRACING
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: digest-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: digest-pod
+  ports:
+  - port: 8501 # Service IP Port
+    targetPort: 8501 # Container Port

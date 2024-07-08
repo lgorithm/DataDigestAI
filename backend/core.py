@@ -5,7 +5,6 @@ from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone
-from backend.consts import INDEX_NAME
 
 pc = Pinecone(
     api_key=os.environ["PINECONE_API_KEY"]
@@ -15,7 +14,7 @@ pc = Pinecone(
 def run_llm(query: str, chat_history: List[Dict[str, Any]] = []) -> Any:
     embeddings = OpenAIEmbeddings()
     vectorStore = PineconeVectorStore(
-        index_name=INDEX_NAME, embedding=embeddings
+        index_name=os.environ["INDEX_NAME"], embedding=embeddings
     )
     chat = ChatOpenAI(verbose=True, temperature=0)
 
