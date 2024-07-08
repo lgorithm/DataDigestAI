@@ -5,6 +5,8 @@ from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone
+from dotenv import load_dotenv
+load_dotenv()
 
 pc = Pinecone(
     api_key=os.environ["PINECONE_API_KEY"]
