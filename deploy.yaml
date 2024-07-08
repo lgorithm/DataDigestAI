@@ -43,7 +43,11 @@ spec:
             secretKeyRef:
               name: langchain-tracing-v2
               key: TRACING
-
+        - name: INDEX_NAME
+          valueFrom:
+            secretKeyRef:
+              name: index-name
+              key: INDEX
 
 ---
 apiVersion: v1

@@ -64,6 +64,7 @@ jobs:
         kubectl create secret generic langchain-secret --from-literal=LANGCHAIN_KEY=${{secrets.LANGCHAIN_API_KEY}} || true
         kubectl create secret generic langchain-project --from-literal=PROJECT_NAME=${{secrets.LANGCHAIN_PROJECT}} || true
         kubectl create secret generic langchain-tracing-v2 --from-literal=TRACING=${{secrets.LANGCHAIN_TRACING_V2}} || true
+        kubectl create secret generic index-name --from-literal=INDEX=${{secrets.INDEX_NAME}} || true
 
 
     # Deploy the Docker image to the GKE cluster
