@@ -73,3 +73,7 @@ This project uses GitHub Actions for continuous deployment. On pushing code to t
 2. **Set up GitHub Actions**:
    - Configure secrets in your GitHub repository for GKE credentials and other necessary environment variables.
 
+## Monitoring
+
+Langsmith is integrated for monitoring the performance and usage of the LLM application.
+
